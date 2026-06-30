@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI計算器與高血壓判斷器</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>BMI計算器與高血壓判斷器</h1>
+        <p class="subtitle">輸入資料後，系統會自動幫你計算與判斷。</p>
+
+        <div class="card">
+            <h2>1. BMI計算器</h2>
+            <form method="POST">
+                <input type="hidden" name="form_type" value="bmi">
+
+                <label>身高（公分）</label>
+                <input type="number" name="height" step="0.1" placeholder="例如：165" required>
+
+                <label>體重（公斤）</label>
+                <input type="number" name="weight" step="0.1" placeholder="例如：55" required>
+
+                <button type="submit">計算 BMI</button>
+            </form>
+
+            {% if bmi_result %}
+                <div class="result">{{ bmi_result }}</div>
+            {% endif %}
+        </div>
+
+        <div class="card">
+            <h2>2. 高血壓判斷器</h2>
+            <form method="POST">
+                <input type="hidden" name="form_type" value="bp">
+
+                <label>收縮壓／上壓</label>
+                <input type="number" name="systolic" placeholder="例如：120" required>
+
+                <label>舒張壓／下壓</label>
+                <input type="number" name="diastolic" placeholder="例如：80" required>
+
+                <button type="submit">判斷血壓</button>
+            </form>
+
+            {% if bp_result %}
+                <div class="result">{{ bp_result }}</div>
+            {% endif %}
+        </div>
+
+        <p class="note">
+            ※ 本網站僅供課堂練習與初步參考，實際健康狀況請以醫師或專業人員判斷為準。
+        </p>
+    </div>
+
+</body>
+</html>
